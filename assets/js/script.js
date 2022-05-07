@@ -24,7 +24,7 @@ function initPage() {
 
                 todayweatherEl.classList.remove("d-none");
 
-                // Parse response to display current weather
+                // displays current weather
                 const currentDate = new Date(response.data.dt * 1000);
                 const day = currentDate.getDate();
                 const month = currentDate.getMonth() + 1;
@@ -37,7 +37,7 @@ function initPage() {
                 currentHumidityEl.innerHTML = "Humidity: " + response.data.main.humidity + "%";
                 currentWindEl.innerHTML = "Wind Speed: " + response.data.wind.speed + " MPH";
                 
-                // Get UV Index
+                // Grab UV Index
                 let lat = response.data.coord.lat;
                 let lon = response.data.coord.lon;
                 let UVQueryURL = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&cnt=1";
@@ -68,7 +68,7 @@ function initPage() {
                     .then(function (response) {
                         fivedayEl.classList.remove("d-none");
                         
-                        //  Parse response to display forecast for next 5 days
+                        //  displays forecast for next 5 days
                         const forecastEls = document.querySelectorAll(".forecast");
                         for (i = 0; i < forecastEls.length; i++) {
                             forecastEls[i].innerHTML = "";
