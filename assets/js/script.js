@@ -6,12 +6,12 @@ function initPage() {
     const currentPicEl = document.getElementById("current-pic");
     const currentTempEl = document.getElementById("temperature");
     const currentHumidityEl = document.getElementById("humidity");
-    const currentWindEl = document.getElementById("wind-speed");
-    const currentUVEl = document.getElementById("UV-index");
+    const currentWindEl = document.getElementById("wind");
+    const currentUVEl = document.getElementById("UV");
     const historyEl = document.getElementById("history");
-    var fivedayEl = document.getElementById("fiveday-header");
-    var todayweatherEl = document.getElementById("today-weather");
-    let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
+    var fivedayEl = document.getElementById("fiveday-forecast");
+    var todayweatherEl = document.getElementById("weather-today");
+    let searchHistory = JSON.parse(localStorage.getItem("search")) || []; //parses data for local storage city search
     
     // Uniqur api key
     const APIKey = "6c3231e6b5f7ce39d26239b2eb6aecbc";
@@ -29,18 +29,18 @@ function initPage() {
                 const day = currentDate.getDate();
                 const month = currentDate.getMonth() + 1;
                 const year = currentDate.getFullYear();
-                nameEl.innerHTML = response.data.name + " (" + month + "/" + day + "/" + year + ") ";
+                nameEl.innerHTML = response.data.name + " (" + month + "/" + day + "/" + year + ") "; //M/D/Y format for weather
                 let weatherPic = response.data.weather[0].icon;
                 currentPicEl.setAttribute("src", "https://openweathermap.org/img/wn/" + weatherPic + "@2x.png");
                 currentPicEl.setAttribute("alt", response.data.weather[0].description);
-                currentTempEl.innerHTML = "Temperature: " + k2f(response.data.main.temp) + " &#176F";
-                currentHumidityEl.innerHTML = "Humidity: " + response.data.main.humidity + "%";
-                currentWindEl.innerHTML = "Wind Speed: " + response.data.wind.speed + " MPH";
+                currentTempEl.innerHTML = "Temperature: " + k2f(response.data.main.temp) + " &#176F"; //Fahrenheit 
+                currentHumidityEl.innerHTML = "Humidity: " + response.data.main.humidity + "%"; //percent humidity 
+                currentWindEl.innerHTML = "Wind Speed: " + response.data.wind.speed + " MPH"; // wind speed
                 
                 // Grab UV Index
                 let lat = response.data.coord.lat;
                 let lon = response.data.coord.lon;
-                let UVQueryURL = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&cnt=1";
+                let UVQueryURL = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&cnt=1"; //location search for city with lat and lon
                 axios.get(UVQueryURL)
                     .then(function (response) {
                         let UVIndex = document.createElement("span");
