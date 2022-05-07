@@ -1,7 +1,5 @@
 # Weather Dashboard
 
-### URL : https://jdafoolio.github.io/weather-dashboard/
-
 ## Description
 A web application that allows users to search the weather of any city and a 5 day forecast. The local storage will store the cities previously searched by the user.
 
@@ -28,6 +26,8 @@ THEN I am again presented with current and future conditions for that city
 ```
 ## Mock-Up
 ![](assets/images/06-server-side-apis-homework-demo.png)
+
+### URL : https://jdafoolio.github.io/weather-dashboard/
 
 
 
